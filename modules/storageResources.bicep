@@ -13,6 +13,9 @@ metadata templateInfo = {
 @description('Required: Prefix for the Storage Account to be created')
 param storageAccountPrefix string
 
+@description('Storage Sku')
+param sku string
+
 @description('Optional: Location for all resources. Default is the location of the resource group using resourceGroup().location function.  Override by specifiying a location parameter at deployment time or in a parameter file.')
 param location string
 
@@ -61,7 +64,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2025-01-01' = {
   location: location
   tags: resourceTags
   sku: {
-    name: 'Standard_LRS'
+    name: sku
   }
   kind: 'StorageV2'
   properties: {
@@ -70,23 +73,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2025-01-01' = {
     minimumTlsVersion: 'TLS1_2'
     networkAcls: {
       bypass: 'AzureServices'
-      virtualNetworkRules: []
-      ipRules: []
       defaultAction: 'Deny'
-    }
-    encryption: {
-      requireInfrastructureEncryption: false
-      services: {
-        file: {
-          keyType: 'Account'
-          enabled: true
-        }
-        blob: {
-          keyType: 'Account'
-          enabled: true
-        }
-      }
-      keySource: 'Microsoft.Storage'
     }
     accessTier: 'Hot'
   }

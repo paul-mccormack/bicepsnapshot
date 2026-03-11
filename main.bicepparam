@@ -3,14 +3,17 @@ using './main.bicep'
 param saConfig = [
   {
     saPrefix: 'digital'
+    sku: 'Standard_LRS'
     serviceGroupTag: 'IT'
   }
   {
     saPrefix: 'people'
+    sku: 'Standard_GRS'
     serviceGroupTag: 'HR'
   }
   {
     saPrefix : 'marketing'
+    sku: 'Standard_ZRS'
     serviceGroupTag: 'Marketing'
   }
 ]

@@ -66,23 +66,7 @@
         "minimumTlsVersion": "TLS1_2",
         "networkAcls": {
           "bypass": "AzureServices",
-          "virtualNetworkRules": [],
-          "ipRules": [],
           "defaultAction": "Deny"
-        },
-        "encryption": {
-          "requireInfrastructureEncryption": false,
-          "services": {
-            "file": {
-              "keyType": "Account",
-              "enabled": true
-            },
-            "blob": {
-              "keyType": "Account",
-              "enabled": true
-            }
-          },
-          "keySource": "Microsoft.Storage"
         },
         "accessTier": "Hot"
       }
@@ -144,7 +128,7 @@
       "apiVersion": "2025-01-01",
       "location": "uksouth",
       "sku": {
-        "name": "Standard_LRS"
+        "name": "Standard_GRS"
       },
       "kind": "StorageV2",
       "tags": {
@@ -159,23 +143,7 @@
         "minimumTlsVersion": "TLS1_2",
         "networkAcls": {
           "bypass": "AzureServices",
-          "virtualNetworkRules": [],
-          "ipRules": [],
           "defaultAction": "Deny"
-        },
-        "encryption": {
-          "requireInfrastructureEncryption": false,
-          "services": {
-            "file": {
-              "keyType": "Account",
-              "enabled": true
-            },
-            "blob": {
-              "keyType": "Account",
-              "enabled": true
-            }
-          },
-          "keySource": "Microsoft.Storage"
         },
         "accessTier": "Hot"
       }
@@ -237,7 +205,7 @@
       "apiVersion": "2025-01-01",
       "location": "uksouth",
       "sku": {
-        "name": "Standard_LRS"
+        "name": "Standard_ZRS"
       },
       "kind": "StorageV2",
       "tags": {
@@ -252,23 +220,7 @@
         "minimumTlsVersion": "TLS1_2",
         "networkAcls": {
           "bypass": "AzureServices",
-          "virtualNetworkRules": [],
-          "ipRules": [],
           "defaultAction": "Deny"
-        },
-        "encryption": {
-          "requireInfrastructureEncryption": false,
-          "services": {
-            "file": {
-              "keyType": "Account",
-              "enabled": true
-            },
-            "blob": {
-              "keyType": "Account",
-              "enabled": true
-            }
-          },
-          "keySource": "Microsoft.Storage"
         },
         "accessTier": "Hot"
       }

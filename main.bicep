@@ -21,6 +21,9 @@ type saConfigType = {
 
   @description('Required: Service Group for tagging purposes. This will be merged into the "commonTags" object at deployment time.')
   serviceGroupTag: string
+
+  @description('Storage Sku')
+  sku: 'PremiumV2_LRS' | 'PremiumV2_ZRS' | 'Premium_LRS' | 'Premium_ZRS' | 'StandardV2_GRS' | 'StandardV2_GZRS' | 'StandardV2_LRS' | 'StandardV2_ZRS' | 'Standard_GRS' | 'Standard_GZRS' | 'Standard_LRS' | 'Standard_RAGRS' | 'Standard_RAGZRS' | 'Standard_ZRS'
 }
 
 //
@@ -88,6 +91,7 @@ module storage './modules/storageResources.bicep' = [for sa in saConfig: {
   name: '${sa.saPrefix}-deployment'
   params: {
     storageAccountPrefix: sa.saPrefix
+    sku: sa.sku
     location: location
     vnetName: vnetName
     subnetName: subnetName
