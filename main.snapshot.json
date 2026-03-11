@@ -1,0 +1,328 @@
+{
+  "predictedResources": [
+    {
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-network",
+      "type": "Microsoft.Resources/resourceGroups",
+      "name": "rg-uks-sandbox-snapshot-network",
+      "apiVersion": "2025-04-01",
+      "location": "uksouth"
+    },
+    {
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage",
+      "type": "Microsoft.Resources/resourceGroups",
+      "name": "rg-uks-sandbox-snapshot-storage",
+      "apiVersion": "2025-04-01",
+      "location": "uksouth"
+    },
+    {
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-network/providers/Microsoft.Network/virtualNetworks/vnet-uks-storage",
+      "type": "Microsoft.Network/virtualNetworks",
+      "name": "vnet-uks-storage",
+      "apiVersion": "2025-05-01",
+      "location": "uksouth",
+      "tags": {
+        "Service": "Storage Private Endpoints",
+        "Created By": "Paul McCormack",
+        "Cost Centre": "test"
+      },
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "10.0.0.0/24"
+          ]
+        },
+        "enableDdosProtection": false,
+        "enableVmProtection": false
+      }
+    },
+    {
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-network/providers/Microsoft.Network/virtualNetworks/vnet-uks-storage/subnets/snet-uks-storage-pe",
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "name": "vnet-uks-storage/snet-uks-storage-pe",
+      "apiVersion": "2025-05-01",
+      "properties": {
+        "addressPrefix": "10.0.0.0/26"
+      }
+    },
+    {
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/digitalnlbhhukmpvukk",
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "digitalnlbhhukmpvukk",
+      "apiVersion": "2025-01-01",
+      "location": "uksouth",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "StorageV2",
+      "tags": {
+        "Service": "Storage Private Endpoints",
+        "Created By": "Paul McCormack",
+        "Cost Centre": "test",
+        "Service Group": "IT"
+      },
+      "properties": {
+        "dnsEndpointType": "Standard",
+        "publicNetworkAccess": "Disabled",
+        "minimumTlsVersion": "TLS1_2",
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "virtualNetworkRules": [],
+          "ipRules": [],
+          "defaultAction": "Deny"
+        },
+        "encryption": {
+          "requireInfrastructureEncryption": false,
+          "services": {
+            "file": {
+              "keyType": "Account",
+              "enabled": true
+            },
+            "blob": {
+              "keyType": "Account",
+              "enabled": true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        },
+        "accessTier": "Hot"
+      }
+    },
+    {
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/digitalnlbhhukmpvukk/blobServices/default",
+      "type": "Microsoft.Storage/storageAccounts/blobServices",
+      "name": "digitalnlbhhukmpvukk/default",
+      "apiVersion": "2025-01-01",
+      "properties": {
+        "containerDeleteRetentionPolicy": {
+          "enabled": true,
+          "days": 7
+        },
+        "deleteRetentionPolicy": {
+          "allowPermanentDelete": false,
+          "enabled": true,
+          "days": 7
+        }
+      }
+    },
+    {
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Network/privateEndpoints/digitalnlbhhukmpvukk-pe",
+      "type": "Microsoft.Network/privateEndpoints",
+      "name": "digitalnlbhhukmpvukk-pe",
+      "apiVersion": "2023-05-01",
+      "location": "uksouth",
+      "tags": {
+        "Service": "Storage Private Endpoints",
+        "Created By": "Paul McCormack",
+        "Cost Centre": "test",
+        "Service Group": "IT"
+      },
+      "properties": {
+        "subnet": {
+          "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-network/providers/Microsoft.Network/virtualNetworks/vnet-uks-storage/subnets/snet-uks-storage-pe"
+        },
+        "privateLinkServiceConnections": [
+          {
+            "name": "digitalnlbhhukmpvukk-blobpe-conn",
+            "properties": {
+              "privateLinkServiceId": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/digitalnlbhhukmpvukk",
+              "groupIds": [
+                "blob"
+              ],
+              "privateLinkServiceConnectionState": {
+                "status": "Approved",
+                "actionsRequired": "None"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/peoplenlbhhukmpvukk",
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "peoplenlbhhukmpvukk",
+      "apiVersion": "2025-01-01",
+      "location": "uksouth",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "StorageV2",
+      "tags": {
+        "Service": "Storage Private Endpoints",
+        "Created By": "Paul McCormack",
+        "Cost Centre": "test",
+        "Service Group": "HR"
+      },
+      "properties": {
+        "dnsEndpointType": "Standard",
+        "publicNetworkAccess": "Disabled",
+        "minimumTlsVersion": "TLS1_2",
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "virtualNetworkRules": [],
+          "ipRules": [],
+          "defaultAction": "Deny"
+        },
+        "encryption": {
+          "requireInfrastructureEncryption": false,
+          "services": {
+            "file": {
+              "keyType": "Account",
+              "enabled": true
+            },
+            "blob": {
+              "keyType": "Account",
+              "enabled": true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        },
+        "accessTier": "Hot"
+      }
+    },
+    {
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/peoplenlbhhukmpvukk/blobServices/default",
+      "type": "Microsoft.Storage/storageAccounts/blobServices",
+      "name": "peoplenlbhhukmpvukk/default",
+      "apiVersion": "2025-01-01",
+      "properties": {
+        "containerDeleteRetentionPolicy": {
+          "enabled": true,
+          "days": 7
+        },
+        "deleteRetentionPolicy": {
+          "allowPermanentDelete": false,
+          "enabled": true,
+          "days": 7
+        }
+      }
+    },
+    {
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Network/privateEndpoints/peoplenlbhhukmpvukk-pe",
+      "type": "Microsoft.Network/privateEndpoints",
+      "name": "peoplenlbhhukmpvukk-pe",
+      "apiVersion": "2023-05-01",
+      "location": "uksouth",
+      "tags": {
+        "Service": "Storage Private Endpoints",
+        "Created By": "Paul McCormack",
+        "Cost Centre": "test",
+        "Service Group": "HR"
+      },
+      "properties": {
+        "subnet": {
+          "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-network/providers/Microsoft.Network/virtualNetworks/vnet-uks-storage/subnets/snet-uks-storage-pe"
+        },
+        "privateLinkServiceConnections": [
+          {
+            "name": "peoplenlbhhukmpvukk-blobpe-conn",
+            "properties": {
+              "privateLinkServiceId": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/peoplenlbhhukmpvukk",
+              "groupIds": [
+                "blob"
+              ],
+              "privateLinkServiceConnectionState": {
+                "status": "Approved",
+                "actionsRequired": "None"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/marketingnlbhhukmpvukk",
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "marketingnlbhhukmpvukk",
+      "apiVersion": "2025-01-01",
+      "location": "uksouth",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "StorageV2",
+      "tags": {
+        "Service": "Storage Private Endpoints",
+        "Created By": "Paul McCormack",
+        "Cost Centre": "test",
+        "Service Group": "Marketing"
+      },
+      "properties": {
+        "dnsEndpointType": "Standard",
+        "publicNetworkAccess": "Disabled",
+        "minimumTlsVersion": "TLS1_2",
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "virtualNetworkRules": [],
+          "ipRules": [],
+          "defaultAction": "Deny"
+        },
+        "encryption": {
+          "requireInfrastructureEncryption": false,
+          "services": {
+            "file": {
+              "keyType": "Account",
+              "enabled": true
+            },
+            "blob": {
+              "keyType": "Account",
+              "enabled": true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        },
+        "accessTier": "Hot"
+      }
+    },
+    {
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/marketingnlbhhukmpvukk/blobServices/default",
+      "type": "Microsoft.Storage/storageAccounts/blobServices",
+      "name": "marketingnlbhhukmpvukk/default",
+      "apiVersion": "2025-01-01",
+      "properties": {
+        "containerDeleteRetentionPolicy": {
+          "enabled": true,
+          "days": 7
+        },
+        "deleteRetentionPolicy": {
+          "allowPermanentDelete": false,
+          "enabled": true,
+          "days": 7
+        }
+      }
+    },
+    {
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Network/privateEndpoints/marketingnlbhhukmpvukk-pe",
+      "type": "Microsoft.Network/privateEndpoints",
+      "name": "marketingnlbhhukmpvukk-pe",
+      "apiVersion": "2023-05-01",
+      "location": "uksouth",
+      "tags": {
+        "Service": "Storage Private Endpoints",
+        "Created By": "Paul McCormack",
+        "Cost Centre": "test",
+        "Service Group": "Marketing"
+      },
+      "properties": {
+        "subnet": {
+          "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-network/providers/Microsoft.Network/virtualNetworks/vnet-uks-storage/subnets/snet-uks-storage-pe"
+        },
+        "privateLinkServiceConnections": [
+          {
+            "name": "marketingnlbhhukmpvukk-blobpe-conn",
+            "properties": {
+              "privateLinkServiceId": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/marketingnlbhhukmpvukk",
+              "groupIds": [
+                "blob"
+              ],
+              "privateLinkServiceConnectionState": {
+                "status": "Approved",
+                "actionsRequired": "None"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "diagnostics": []
+}

@@ -1,0 +1,55 @@
+
+{
+  "name": "Azure Dev Container",
+  "build": {
+		"dockerfile": "Dockerfile"
+	},
+  "features": {
+    "ghcr.io/devcontainers/features/azure-cli:1": {
+      "version": "latest",
+      "installBicep": true,
+      "bicepVersion": "latest",
+      "extensions": ""
+    },
+    "ghcr.io/devcontainers/features/powershell:2": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/git:latest": {
+    },
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true
+    },
+    "ghcr.io/devcontainers/features/terraform:1": {
+      "installTFsec": true,
+      "installTerraformDocs": true
+    },
+    "ghcr.io/devcontainers/features/copilot-cli:1": {
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.azurecli",
+        "ms-vscode.powershell",
+        "ms-azuretools.vscode-bicep",
+        "ms-azuretools.vscode-apimanagement",
+        "ms-foundry.vscode-extension",
+        "github.vscode-pull-request-github",
+        "pkief.material-icon-theme",
+        "github.remotehub",
+        "ms-azuretools.vscode-azure-mcp-server",
+        "github.vscode-github-actions",
+        "github.copilot-chat",
+        "hashicorp.terraform",
+        "ms-azuretools.vscode-azureterraform",
+        "ms-azuretools.vscode-azure-github-copilot"
+      ]
+      //"settings": {
+      //  "powershell.powerShellDefaultVersion": "/usr/bin/pwsh",
+      //  "terminal.integrated.defaultProfile.linux": "pwsh",
+      //  "azurecli.terminal.integrated.shell.linux": "/bin/bash"
+      //}
+    }
+  },
+  "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && git config --global init.defaultBranch main"
+}
