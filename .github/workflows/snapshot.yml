@@ -28,7 +28,7 @@ jobs:
             const marker = "<!-- bicep-snapshot-comment -->";
             const body = `${marker}
             Snapshot workflow triggered for this PR.
-            I will now validate the Bicep snapshot on this update.`;
+            I will now validate the Bicep snapshot.`;
 
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
