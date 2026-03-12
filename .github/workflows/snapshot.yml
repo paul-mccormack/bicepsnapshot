@@ -93,7 +93,7 @@ jobs:
               Write-Host "`n"
               Write-Host $snapshot_result
           }
-          "snap_shot_result=$snapshot_result" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding UTF8 -Append
+          "snap_shot_result=$snapshot_result" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
 
       - name: Comment Results on PR
