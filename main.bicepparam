@@ -3,7 +3,7 @@ using './main.bicep'
 param saConfig = [
   {
     saPrefix: 'digital'
-    sku: 'Standard_ZRS'
+    sku: 'Standard_LRS'
     serviceGroupTag: 'IT'
   }
   {

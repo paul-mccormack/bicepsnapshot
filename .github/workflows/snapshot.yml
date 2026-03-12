@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Add or update PR comment
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const issue_number = context.payload.pull_request.number;
@@ -56,7 +56,7 @@ jobs:
               });
             }
 
-  generate-snapshot:
+  validate-snapshot:
     name: Validate snapshot
     runs-on: ubuntu-latest
     needs: comment-on-pr
@@ -84,25 +84,30 @@ jobs:
 
           if ($snapshot_result -eq $null) {
               Write-Host "`n"
-              Write-Host "No changes detected in the snapshot."
+              Write-Host "No resource changes detected in the snapshot."
               Write-Host "`n"
-              $snapshot_result = "No changes detected in the snapshot."
+              $snapshot_result = "No resource changes were detected in the snapshot."
           } else {
               Write-Host "`n"
-              Write-Host "Changes detected in the snapshot:"
+              Write-Host "Resource changes detected in the snapshot: Please review the results."
               Write-Host "`n"
-              Write-Host $snapshot_result
+              $snapshot_result = "Resource changes detected in the snapshot: Please review the results."
           }
           "snap_shot_result=$snapshot_result" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
+          bicep snapshot main.bicepparam --mode validate --subscription-id 8a9d9b4d-56c8-4fe7-b760-6b84698a3353 --location uksouth
 
       - name: Comment Results on PR
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
+            const marker = "<!-- bicep-snapshot-result -->";
+            const body = `${marker}
+            Snapshot validation completed: ${{ steps.validate-snapshot.outputs.snap_shot_result }}`;
+            
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.pull_request.number,
-              body: `${{ steps.validate-snapshot.outputs.snap_shot_result }}`
+              body
             });
