@@ -1,0 +1,67 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: Deploy Resources
+
+on:
+  push:
+    branches:
+        - main
+    paths-ignore:
+      - 'main.snapshot.json'  # Ignore changes to the sanpshot file as it will be updated and checked in at the end of the workflow
+
+
+permissions:
+    id-token: write
+    actions: read
+    contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Bicep CLI
+        uses: anthony-c-martin/setup-bicep@v0.3
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
+      
+      - name: Deploy
+        uses: azure/bicep-deploy@v2
+        with:
+          type: deployment
+          operation: create
+          scope: subscription
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          name: ${{ github.repository }}/${{ github.run_id }}
+          location: uksouth
+          template-file: ./main.bicep
+          parameters-file: ./main.bicepparam
+
+  update-snapshot:
+    name: Update Bicep snapshot
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Bicep CLI
+        uses: anthony-c-martin/setup-bicep@v0.3
+
+      - name: Update snapshot
+        shell: pwsh
+        run: |
+          bicep snapshot main.bicepparam --mode overwrite --subscription-id 8a9d9b4d-56c8-4fe7-b760-6b84698a3353 --location uksouth
+
+      - name: Git Auto Commit
+        uses: stefanzweifel/git-auto-commit-action@v7.1.0
+        with:
+          commit_message: Updated by Github Actions
