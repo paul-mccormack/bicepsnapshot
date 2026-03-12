@@ -75,7 +75,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2025-01-01' = {
       bypass: 'AzureServices'
       defaultAction: 'Deny'
     }
-    accessTier: 'Cool'
+    accessTier: 'Hot'
   }
 }
 
