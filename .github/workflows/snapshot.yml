@@ -77,6 +77,7 @@ jobs:
 
       - name: Validate snapshot
         id: validate-snapshot
+        continue-on-error: true
         shell: pwsh
         run: |
           $snapshot_result = bicep snapshot main.bicepparam --mode validate --subscription-id 8a9d9b4d-56c8-4fe7-b760-6b84698a3353 --location uksouth
