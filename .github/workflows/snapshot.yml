@@ -12,7 +12,7 @@ on:
       - reopened
 
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
   issues: write
 
@@ -31,7 +31,7 @@ jobs:
             const issue_number = context.payload.pull_request.number;
             const marker = "<!-- bicep-snapshot-comment -->";
             const body = `${marker}
-            Snapshot workflow triggered for this PR.
+            Bicep snapshot workflow triggered for this PR.
             I will now validate the Bicep snapshot.`;
 
             const { data: comments } = await github.rest.issues.listComments({
@@ -89,8 +89,30 @@ jobs:
           } else {
               Write-Host "No Bicep snapshot file found. Please ensure that the snapshot file is present in the PR for validation."
               echo "snapshot_exists=false" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-              exit 1
           }
+
+      - name: Comment no snapshot found
+        if: steps.check-snapshot.outputs.snapshot_exists == 'false'
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const marker = "<!-- bicep-snapshot-exists-result -->";
+            const body = `${marker}
+            No Bicep snapshot file found. Please ensure that the snapshot file is present in the PR for validation.`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body
+            });
+
+      - name: fail job if no snapshot found
+        if: steps.check-snapshot.outputs.snapshot_exists == 'false'
+        shell: pwsh
+        run: |
+          Write-Host "Failing the job as no snapshot file was found for validation."
+          exit 1
 
       - name: Validate snapshot
         id: validate-snapshot
@@ -100,14 +122,10 @@ jobs:
           $snapshot_result = bicep snapshot main.bicepparam --mode validate --subscription-id ${{ secrets.AZURE_SUBSCRIPTION_ID }} --location uksouth
 
           if ($snapshot_result -eq $null) {
-              Write-Host "`n"
               Write-Host "No resource changes detected in the snapshot."
-              Write-Host "`n"
               $snapshot_result = "No resource changes in the Bicep deployment were detected in the snapshot."
           } else {
-              Write-Host "`n"
               Write-Host "Resource changes detected in the snapshot: Please review the results."
-              Write-Host "`n"
               $snapshot_result = "Resource changes detected in the Bicep deployment: Please review the results in the Validate snapshot step."
 
               Write-Host "-------------- Review resource changes --------------"
