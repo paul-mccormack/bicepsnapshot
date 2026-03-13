@@ -1,4 +1,4 @@
-# Bicep Snapsshot
+# Bicep Snapshot
 
 [![Validate Bicep Snapshot](https://github.com/paul-mccormack/bicepsnapshot/actions/workflows/snapshot.yml/badge.svg)](https://github.com/paul-mccormack/bicepsnapshot/actions/workflows/snapshot.yml) [![Deploy Resources](https://github.com/paul-mccormack/bicepsnapshot/actions/workflows/deploy.yml/badge.svg)](https://github.com/paul-mccormack/bicepsnapshot/actions/workflows/deploy.yml)
 
