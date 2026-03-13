@@ -12,9 +12,13 @@ on:
       - reopened
 
 permissions:
-  contents: read
+  contents: write
   pull-requests: write
   issues: write
+
+env:
+  BICEP_TEMPLATE: main.bicep
+  BICEP_PARAMETERS: main.bicepparam
 
 jobs:
   comment-on-pr:
@@ -61,10 +65,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: comment-on-pr
     if: github.event.pull_request.head.repo.full_name == github.repository
-    permissions:
-      contents: read
-      pull-requests: write
-      issues: write
+#    permissions:
+#      contents: read
+#      pull-requests: write
+#      issues: write
 
     steps:
       - name: Checkout PR head commit
@@ -75,12 +79,25 @@ jobs:
       - name: Setup Bicep CLI
         uses: anthony-c-martin/setup-bicep@v0.3
 
+      - name: Check for Bicep Snapshot
+        id: check-snapshot
+        shell: pwsh
+        run: |
+          if (Test-Path -Path "main.snapshot.json") {
+              Write-Host "Bicep snapshot file found."
+              echo "snapshot_exists=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          } else {
+              Write-Host "No Bicep snapshot file found. Please ensure that the snapshot file is present in the PR for validation."
+              echo "snapshot_exists=false" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+              exit 1
+          }
+
       - name: Validate snapshot
         id: validate-snapshot
         continue-on-error: true
         shell: pwsh
         run: |
-          $snapshot_result = bicep snapshot main.bicepparam --mode validate --subscription-id 8a9d9b4d-56c8-4fe7-b760-6b84698a3353 --location uksouth
+          $snapshot_result = bicep snapshot main.bicepparam --mode validate --subscription-id ${{ secrets.AZURE_SUBSCRIPTION_ID }} --location uksouth
 
           if ($snapshot_result -eq $null) {
               Write-Host "`n"
@@ -94,7 +111,7 @@ jobs:
               $snapshot_result = "Resource changes detected in the Bicep deployment: Please review the results in the Validate snapshot step."
 
               Write-Host "-------------- Review resource changes --------------"
-              bicep snapshot main.bicepparam --mode validate --subscription-id 8a9d9b4d-56c8-4fe7-b760-6b84698a3353 --location uksouth
+              bicep snapshot main.bicepparam --mode validate --subscription-id ${{ secrets.AZURE_SUBSCRIPTION_ID }} --location uksouth
               Write-Host "-----------------------------------------------------"
           }
           "snap_shot_result=$snapshot_result" | Out-File -FilePath $env:GITHUB_OUTPUT -Append

@@ -59,7 +59,7 @@ jobs:
       - name: Update snapshot
         shell: pwsh
         run: |
-          bicep snapshot main.bicepparam --mode overwrite --subscription-id 8a9d9b4d-56c8-4fe7-b760-6b84698a3353 --location uksouth
+          bicep snapshot main.bicepparam --mode overwrite --subscription-id ${{ secrets.AZURE_SUBSCRIPTION_ID }} --location uksouth
 
       - name: Git Auto Commit
         uses: stefanzweifel/git-auto-commit-action@v7.1.0
