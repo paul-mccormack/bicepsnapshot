@@ -45,7 +45,7 @@ jobs:
           operation: create
           scope: subscription
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          name: ${{ github.repository }}/${{ github.run_id }}
+          name: ${{ github.run_id }}
           location: ${{ env.LOCATION }}
           template-file: ${{ env.BICEP_TEMPLATE }}
           parameters-file: ${{ env.BICEP_PARAMETERS }}
