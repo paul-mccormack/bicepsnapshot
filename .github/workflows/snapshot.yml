@@ -97,7 +97,7 @@ jobs:
         continue-on-error: true
         shell: pwsh
         run: |
-          $snapshot_result = bicep snapshot main.bicepparam --mode validate --subscription-id ${{ secrets.AZURE_SUBSCRIPTION_ID }} --location uksouth
+          $snapshot_result = bicep snapshot ${{ env.BICEP_PARAMETERS }} --mode validate --subscription-id ${{ secrets.AZURE_SUBSCRIPTION_ID }} --location ${{ env.LOCATION }}
 
           if ($snapshot_result -eq $null) {
               Write-Host "No resource changes detected in the snapshot."
@@ -107,7 +107,7 @@ jobs:
               $snapshot_result = "Resource changes detected in the Bicep deployment: Please review the results in the Validate snapshot step."
 
               Write-Host "-------------- Review resource changes --------------"
-              bicep snapshot main.bicepparam --mode validate --subscription-id ${{ secrets.AZURE_SUBSCRIPTION_ID }} --location uksouth
+              bicep snapshot ${{ env.BICEP_PARAMETERS }} --mode validate --subscription-id ${{ secrets.AZURE_SUBSCRIPTION_ID }} --location ${{ env.LOCATION }}
               Write-Host "-----------------------------------------------------"
           }
           "snap_shot_result=$snapshot_result" | Out-File -FilePath $env:GITHUB_OUTPUT -Append

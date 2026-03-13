@@ -9,6 +9,10 @@ on:
     paths-ignore:
       - 'main.snapshot.json'  # Ignore changes to the sanpshot file as it will be updated and checked in at the end of the workflow
 
+env:
+  BICEP_TEMPLATE: main.bicep
+  BICEP_PARAMETERS: main.bicepparam
+  LOCATION: uksouth
 
 permissions:
     id-token: write
@@ -41,9 +45,9 @@ jobs:
           scope: subscription
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           name: ${{ github.repository }}/${{ github.run_id }}
-          location: uksouth
-          template-file: ./main.bicep
-          parameters-file: ./main.bicepparam
+          location: ${{ env.LOCATION }}
+          template-file: ${{ env.BICEP_TEMPLATE }}
+          parameters-file: ${{ env.BICEP_PARAMETERS }}
 
   update-snapshot:
     name: Update Bicep snapshot
@@ -59,7 +63,7 @@ jobs:
       - name: Update snapshot
         shell: pwsh
         run: |
-          bicep snapshot main.bicepparam --mode overwrite --subscription-id ${{ secrets.AZURE_SUBSCRIPTION_ID }} --location uksouth
+          bicep snapshot ${{ env.BICEP_PARAMETERS }} --mode overwrite --subscription-id ${{ secrets.AZURE_SUBSCRIPTION_ID }} --location ${{ env.LOCATION }}
 
       - name: Git Auto Commit
         uses: stefanzweifel/git-auto-commit-action@v7.1.0
