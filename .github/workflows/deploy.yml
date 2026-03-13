@@ -9,8 +9,6 @@ on:
     paths:
       - '**/*.bicep'
       - '**/*.bicepparam'
-    paths-ignore:
-      - 'main.snapshot.json'  # Ignore changes to the sanpshot file as it will be updated and checked in at the end of the workflow
 
 env:
   BICEP_TEMPLATE: main.bicep
