@@ -274,6 +274,83 @@
           }
         ]
       }
+    },
+    {
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/financenlbhhukmpvukk",
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "financenlbhhukmpvukk",
+      "apiVersion": "2025-01-01",
+      "location": "uksouth",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "StorageV2",
+      "tags": {
+        "Service": "Storage Private Endpoints",
+        "Created By": "Paul McCormack",
+        "Cost Centre": "test",
+        "Service Group": "Finance"
+      },
+      "properties": {
+        "dnsEndpointType": "Standard",
+        "publicNetworkAccess": "Disabled",
+        "minimumTlsVersion": "TLS1_2",
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "defaultAction": "Deny"
+        },
+        "accessTier": "Hot"
+      }
+    },
+    {
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/financenlbhhukmpvukk/blobServices/default",
+      "type": "Microsoft.Storage/storageAccounts/blobServices",
+      "name": "financenlbhhukmpvukk/default",
+      "apiVersion": "2025-01-01",
+      "properties": {
+        "containerDeleteRetentionPolicy": {
+          "enabled": true,
+          "days": 7
+        },
+        "deleteRetentionPolicy": {
+          "allowPermanentDelete": false,
+          "enabled": true,
+          "days": 7
+        }
+      }
+    },
+    {
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Network/privateEndpoints/financenlbhhukmpvukk-pe",
+      "type": "Microsoft.Network/privateEndpoints",
+      "name": "financenlbhhukmpvukk-pe",
+      "apiVersion": "2023-05-01",
+      "location": "uksouth",
+      "tags": {
+        "Service": "Storage Private Endpoints",
+        "Created By": "Paul McCormack",
+        "Cost Centre": "test",
+        "Service Group": "Finance"
+      },
+      "properties": {
+        "subnet": {
+          "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-network/providers/Microsoft.Network/virtualNetworks/vnet-uks-storage/subnets/snet-uks-storage-pe"
+        },
+        "privateLinkServiceConnections": [
+          {
+            "name": "financenlbhhukmpvukk-blobpe-conn",
+            "properties": {
+              "privateLinkServiceId": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/financenlbhhukmpvukk",
+              "groupIds": [
+                "blob"
+              ],
+              "privateLinkServiceConnectionState": {
+                "status": "Approved",
+                "actionsRequired": "None"
+              }
+            }
+          }
+        ]
+      }
     }
   ],
   "diagnostics": []
