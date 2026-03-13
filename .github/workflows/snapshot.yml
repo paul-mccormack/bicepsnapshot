@@ -96,16 +96,37 @@ jobs:
         uses: actions/github-script@v8
         with:
           script: |
-            const marker = "<!-- bicep-snapshot-exists-result -->";
+            const issue_number = context.payload.pull_request.number;
+            const marker = "<!-- bicep-snapshot-comment -->";
             const body = `${marker}
-            No Bicep snapshot file found. Please ensure that the snapshot file is present in the PR for validation.`;
+            No Bicep snapshot file found. Please ensure that the snapshot file is present in the PR for validation.
+            This job will now fail.`;
 
-            await github.rest.issues.createComment({
+            const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-              body
+              issue_number
             });
+
+            const existing = comments.find(
+              c => c.user.type === "Bot" && c.body && c.body.includes(marker)
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number,
+                body
+              });
+            }
 
       - name: fail job if no snapshot found
         if: steps.check-snapshot.outputs.snapshot_exists == 'false'
