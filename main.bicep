@@ -6,6 +6,8 @@ metadata templateInfo = {
   date: '12-01-2026'
 }
 
+// Comment to make a change and test the deployment workflow
+
 targetScope = 'subscription'
 
 //
