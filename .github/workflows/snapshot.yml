@@ -104,7 +104,7 @@ jobs:
               $snapshot_result = "No resource changes in the Bicep deployment were detected in the snapshot."
           } else {
               Write-Host "Resource changes detected in the snapshot: Please review the results."
-              $snapshot_result = "Resource changes detected in the Bicep deployment: Please review the results in the Validate snapshot step."
+              $snapshot_result = "Resource changes detected in the Bicep deployment: Please review the results in the Validate snapshot step and ensure the changes are expected."
 
               Write-Host "-------------- Review resource changes --------------"
               bicep snapshot ${{ env.BICEP_PARAMETERS }} --mode validate --subscription-id ${{ secrets.AZURE_SUBSCRIPTION_ID }} --location ${{ env.LOCATION }}
