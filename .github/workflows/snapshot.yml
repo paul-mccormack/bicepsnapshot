@@ -57,7 +57,7 @@ jobs:
         id: check-snapshot
         shell: pwsh
         run: |
-          if (Test-Path -Path "main.snapshot.json") {
+          if (Test-Path -Path "*.snapshot.json") {
               Write-Host "Bicep snapshot file found."
               echo "snapshot_exists=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           } else {
