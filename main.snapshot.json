@@ -51,7 +51,7 @@
       "apiVersion": "2025-01-01",
       "location": "uksouth",
       "sku": {
-        "name": "Standard_LRS"
+        "name": "Standard_ZRS"
       },
       "kind": "StorageV2",
       "tags": {
