@@ -3,7 +3,7 @@
 [![Validate Bicep Snapshot](https://github.com/paul-mccormack/bicepsnapshot/actions/workflows/snapshot.yml/badge.svg)](https://github.com/paul-mccormack/bicepsnapshot/actions/workflows/snapshot.yml) [![Deploy Resources](https://github.com/paul-mccormack/bicepsnapshot/actions/workflows/deploy.yml/badge.svg)](https://github.com/paul-mccormack/bicepsnapshot/actions/workflows/deploy.yml)
 
 > [!NOTE]
-> This repo has a detailed companion post explaining the workflow on [howdoyou.cloud](https://howdoyou.cloud/posts/finding-orphaned-azure-resources/)
+> This repo has a detailed companion post explaining the workflow on [howdoyou.cloud](https://howdoyou.cloud/)
 
 ## Introduction
 
