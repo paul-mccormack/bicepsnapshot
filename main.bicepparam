@@ -16,11 +16,6 @@ param saConfig = [
     sku: 'Standard_ZRS'
     serviceGroupTag: 'Marketing'
   }
-  {
-    saPrefix : 'finance'
-    sku: 'Standard_LRS'
-    serviceGroupTag: 'Finance'
-  }
 ]
 
 param location = 'uksouth'
