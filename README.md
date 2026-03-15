@@ -37,7 +37,7 @@ The snapshot file is a JSON file which can be included in version control and us
 
 ## Automating the process with GitHub Actions
 
-Bicep snapshot seems like a great feature but I wanted to see if I could integrate it into a CI/CD pipeline, providing a method of automated validation using pull requests to detect if changes have occurredand inform a reviewer before deployment.<br><br>
+Bicep snapshot seems like a great feature but I wanted to see if I could integrate it into a CI/CD pipeline, providing a method of automated validation using pull requests to detect if changes have occurred and inform a reviewer before deployment.<br><br>
 
 The result ended up being two GitHub Actions workflows:
 
