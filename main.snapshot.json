@@ -1,21 +1,21 @@
 {
   "predictedResources": [
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-network",
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-network",
       "type": "Microsoft.Resources/resourceGroups",
       "name": "rg-uks-sandbox-snapshot-network",
       "apiVersion": "2025-04-01",
       "location": "uksouth"
     },
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-storage",
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage",
       "type": "Microsoft.Resources/resourceGroups",
       "name": "rg-uks-sandbox-snapshot-storage",
       "apiVersion": "2025-04-01",
       "location": "uksouth"
     },
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-network/providers/Microsoft.Network/virtualNetworks/vnet-uks-storage",
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-network/providers/Microsoft.Network/virtualNetworks/vnet-uks-storage",
       "type": "Microsoft.Network/virtualNetworks",
       "name": "vnet-uks-storage",
       "apiVersion": "2025-05-01",
@@ -36,7 +36,7 @@
       }
     },
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-network/providers/Microsoft.Network/virtualNetworks/vnet-uks-storage/subnets/snet-uks-storage-pe",
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-network/providers/Microsoft.Network/virtualNetworks/vnet-uks-storage/subnets/snet-uks-storage-pe",
       "type": "Microsoft.Network/virtualNetworks/subnets",
       "name": "vnet-uks-storage/snet-uks-storage-pe",
       "apiVersion": "2025-05-01",
@@ -45,13 +45,13 @@
       }
     },
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/digitalrrjpbdeenuokk",
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/digitalnlbhhukmpvukk",
       "type": "Microsoft.Storage/storageAccounts",
-      "name": "digitalrrjpbdeenuokk",
+      "name": "digitalnlbhhukmpvukk",
       "apiVersion": "2025-01-01",
       "location": "uksouth",
       "sku": {
-        "name": "Standard_ZRS"
+        "name": "Standard_LRS"
       },
       "kind": "StorageV2",
       "tags": {
@@ -72,9 +72,9 @@
       }
     },
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/digitalrrjpbdeenuokk/blobServices/default",
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/digitalnlbhhukmpvukk/blobServices/default",
       "type": "Microsoft.Storage/storageAccounts/blobServices",
-      "name": "digitalrrjpbdeenuokk/default",
+      "name": "digitalnlbhhukmpvukk/default",
       "apiVersion": "2025-01-01",
       "properties": {
         "containerDeleteRetentionPolicy": {
@@ -89,9 +89,9 @@
       }
     },
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Network/privateEndpoints/digitalrrjpbdeenuokk-pe",
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Network/privateEndpoints/digitalnlbhhukmpvukk-pe",
       "type": "Microsoft.Network/privateEndpoints",
-      "name": "digitalrrjpbdeenuokk-pe",
+      "name": "digitalnlbhhukmpvukk-pe",
       "apiVersion": "2023-05-01",
       "location": "uksouth",
       "tags": {
@@ -102,13 +102,13 @@
       },
       "properties": {
         "subnet": {
-          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-network/providers/Microsoft.Network/virtualNetworks/vnet-uks-storage/subnets/snet-uks-storage-pe"
+          "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-network/providers/Microsoft.Network/virtualNetworks/vnet-uks-storage/subnets/snet-uks-storage-pe"
         },
         "privateLinkServiceConnections": [
           {
-            "name": "digitalrrjpbdeenuokk-blobpe-conn",
+            "name": "digitalnlbhhukmpvukk-blobpe-conn",
             "properties": {
-              "privateLinkServiceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/digitalrrjpbdeenuokk",
+              "privateLinkServiceId": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/digitalnlbhhukmpvukk",
               "groupIds": [
                 "blob"
               ],
@@ -122,9 +122,9 @@
       }
     },
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/peoplerrjpbdeenuokk",
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/peoplenlbhhukmpvukk",
       "type": "Microsoft.Storage/storageAccounts",
-      "name": "peoplerrjpbdeenuokk",
+      "name": "peoplenlbhhukmpvukk",
       "apiVersion": "2025-01-01",
       "location": "uksouth",
       "sku": {
@@ -149,9 +149,9 @@
       }
     },
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/peoplerrjpbdeenuokk/blobServices/default",
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/peoplenlbhhukmpvukk/blobServices/default",
       "type": "Microsoft.Storage/storageAccounts/blobServices",
-      "name": "peoplerrjpbdeenuokk/default",
+      "name": "peoplenlbhhukmpvukk/default",
       "apiVersion": "2025-01-01",
       "properties": {
         "containerDeleteRetentionPolicy": {
@@ -166,9 +166,9 @@
       }
     },
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Network/privateEndpoints/peoplerrjpbdeenuokk-pe",
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Network/privateEndpoints/peoplenlbhhukmpvukk-pe",
       "type": "Microsoft.Network/privateEndpoints",
-      "name": "peoplerrjpbdeenuokk-pe",
+      "name": "peoplenlbhhukmpvukk-pe",
       "apiVersion": "2023-05-01",
       "location": "uksouth",
       "tags": {
@@ -179,13 +179,13 @@
       },
       "properties": {
         "subnet": {
-          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-network/providers/Microsoft.Network/virtualNetworks/vnet-uks-storage/subnets/snet-uks-storage-pe"
+          "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-network/providers/Microsoft.Network/virtualNetworks/vnet-uks-storage/subnets/snet-uks-storage-pe"
         },
         "privateLinkServiceConnections": [
           {
-            "name": "peoplerrjpbdeenuokk-blobpe-conn",
+            "name": "peoplenlbhhukmpvukk-blobpe-conn",
             "properties": {
-              "privateLinkServiceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/peoplerrjpbdeenuokk",
+              "privateLinkServiceId": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/peoplenlbhhukmpvukk",
               "groupIds": [
                 "blob"
               ],
@@ -199,9 +199,9 @@
       }
     },
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/marketingrrjpbdeenuokk",
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/marketingnlbhhukmpvukk",
       "type": "Microsoft.Storage/storageAccounts",
-      "name": "marketingrrjpbdeenuokk",
+      "name": "marketingnlbhhukmpvukk",
       "apiVersion": "2025-01-01",
       "location": "uksouth",
       "sku": {
@@ -226,9 +226,9 @@
       }
     },
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/marketingrrjpbdeenuokk/blobServices/default",
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/marketingnlbhhukmpvukk/blobServices/default",
       "type": "Microsoft.Storage/storageAccounts/blobServices",
-      "name": "marketingrrjpbdeenuokk/default",
+      "name": "marketingnlbhhukmpvukk/default",
       "apiVersion": "2025-01-01",
       "properties": {
         "containerDeleteRetentionPolicy": {
@@ -243,9 +243,9 @@
       }
     },
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Network/privateEndpoints/marketingrrjpbdeenuokk-pe",
+      "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Network/privateEndpoints/marketingnlbhhukmpvukk-pe",
       "type": "Microsoft.Network/privateEndpoints",
-      "name": "marketingrrjpbdeenuokk-pe",
+      "name": "marketingnlbhhukmpvukk-pe",
       "apiVersion": "2023-05-01",
       "location": "uksouth",
       "tags": {
@@ -256,13 +256,13 @@
       },
       "properties": {
         "subnet": {
-          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-network/providers/Microsoft.Network/virtualNetworks/vnet-uks-storage/subnets/snet-uks-storage-pe"
+          "id": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-network/providers/Microsoft.Network/virtualNetworks/vnet-uks-storage/subnets/snet-uks-storage-pe"
         },
         "privateLinkServiceConnections": [
           {
-            "name": "marketingrrjpbdeenuokk-blobpe-conn",
+            "name": "marketingnlbhhukmpvukk-blobpe-conn",
             "properties": {
-              "privateLinkServiceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/marketingrrjpbdeenuokk",
+              "privateLinkServiceId": "/subscriptions/8a9d9b4d-56c8-4fe7-b760-6b84698a3353/resourceGroups/rg-uks-sandbox-snapshot-storage/providers/Microsoft.Storage/storageAccounts/marketingnlbhhukmpvukk",
               "groupIds": [
                 "blob"
               ],
